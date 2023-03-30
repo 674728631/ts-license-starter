@@ -5,7 +5,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.thundersoft.license</groupId>
+    <groupId>com.github.ts</groupId>
     <artifactId>ts-license-starter</artifactId>
     <version>1.0.0</version>
 
@@ -16,6 +16,11 @@
         </license>
     </licenses>
 
+    <scm>
+        <connection>scm:https://github.com/674728631/ts-license-starter</connection>
+        <developerConnection>scm:https://github.com/674728631/ts-license-starter</developerConnection>
+        <url>https://github.com/674728631/ts-license-starter</url>
+    </scm>
 
     <properties>
         <github.global.server>github</github.global.server>

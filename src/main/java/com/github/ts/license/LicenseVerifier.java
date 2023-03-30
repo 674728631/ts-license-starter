@@ -1,4 +1,4 @@
-package com.thundersoft.license;
+package com.github.ts.license;
 
 import cn.hutool.core.date.DateUtil;
 import de.schlichtherle.license.*;

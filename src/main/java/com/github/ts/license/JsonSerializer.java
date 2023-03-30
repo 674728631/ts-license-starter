@@ -1,4 +1,4 @@
-package com.thundersoft.license;
+package com.github.ts.license;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

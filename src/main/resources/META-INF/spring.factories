@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.thundersoft.license.LicenseAutoConfiguration
+  com.github.ts.license.LicenseAutoConfiguration
