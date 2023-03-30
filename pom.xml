@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--suppress VulnerableLibrariesLocal -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.thundersoft.license</groupId>
+    <artifactId>ts-license-starter</artifactId>
+    <version>1.0.0</version>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License,Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+
+    <properties>
+        <github.global.server>github</github.global.server>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.7.4</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
+
+        <!--生成license-->
+        <dependency>
+            <groupId>de.schlichtherle.truelicense</groupId>
+            <artifactId>truelicense-core</artifactId>
+            <version>1.33</version>
+        </dependency>
+
+        <!-- 加密  -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-crypto</artifactId>
+            <version>5.8.0</version>
+        </dependency>
+
+    </dependencies>
+
+    <distributionManagement>
+        <!--部署仓库id-->
+        <repository>
+            <id>github</id>
+            <name>GitHub 674728631 Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/674728631/ts-license-starter</url>
+        </repository>
+    </distributionManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-source-plugin</artifactId>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>jar</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+
+<!--            <plugin>-->
+<!--                &lt;!&ndash; Maven Deploy Plugin &ndash;&gt;-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-deploy-plugin</artifactId>-->
+<!--                <version>3.0.0-M1</version>-->
+<!--                <configuration>-->
+<!--                    &lt;!&ndash; 配置本地打包后的本地仓库存储地址，后续上传jar包会从此仓库中去取 &ndash;&gt;-->
+<!--                    <altDeploymentRepository>-->
+<!--                        internal.repo::default::file://${project.build.directory}/mvn-repo-->
+<!--                    </altDeploymentRepository>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--            <plugin>-->
+<!--                &lt;!&ndash; GitHub Repository Configuration &ndash;&gt;-->
+<!--                <groupId>com.github.github</groupId>-->
+<!--                <artifactId>site-maven-plugin</artifactId>-->
+<!--                <version>0.12</version>-->
+<!--                <configuration>-->
+<!--                    <message>Maven artifacts for ${project.version}</message>-->
+<!--                    <noJekyll>true</noJekyll>-->
+<!--                    &lt;!&ndash; 指定从哪里去取打好的包，并上传至github &ndash;&gt;-->
+<!--                    <outputDirectory>${project.build.directory}/maven-repository</outputDirectory>-->
+<!--                    &lt;!&ndash;-->
+<!--						指定要上传的分支, refs/heads 这个不变，后面的分支名可选，可以采取一个jar包使用一个分支的策略。-->
+<!--						若多个jar包同时发布在同一个分支的话，会覆盖。。。。-->
+<!--					&ndash;&gt;-->
+<!--                    <branch>refs/heads/master</branch>-->
+<!--                    &lt;!&ndash; 包含outputDirectory标签内填的文件夹中的所有内容 &ndash;&gt;-->
+<!--                    <includes>-->
+<!--                        <include>**/*</include>-->
+<!--                    </includes>-->
+<!--                    &lt;!&ndash; github远程存储outputDirectory标签内填的文件夹中的内容 &ndash;&gt;-->
+<!--                    <repositoryName>ts-license-starter</repositoryName>-->
+<!--                    &lt;!&ndash;-->
+<!--					  github的用户名，注意不是登录的用户名，此项需要登录后，进入https://github.com/settings/profile页面配置Name属性，-->
+<!--					  否则会报-->
+<!--					  [ERROR] Failed to execute goal com.github.github:site-maven-plugin:0.12:site-->
+<!--					  (default) on project rfcore: Error creating commit: Invalid request.-->
+<!--					  [ERROR] For 'properties/name', nil is not a string.-->
+<!--					  [ERROR] For 'properties/name', nil is not a string. (422)-->
+<!--					  [ERROR] -> [Help 1]-->
+<!--					  的错误-->
+<!--					&ndash;&gt;-->
+<!--                    <repositoryOwner>lz</repositoryOwner>-->
+<!--                    <server>github</server>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <goals>-->
+<!--                            <goal>site</goal>-->
+<!--                        </goals>-->
+<!--                        <phase>deploy</phase>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+        </plugins>
+
+    </build>
+
+</project>
